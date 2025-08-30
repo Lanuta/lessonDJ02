@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Это новостная страница{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Добрые вести</h1>
+
+    {% for new in news %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title">{{ new.title }}</h3>
+            <p class="text-muted mb-1">
+                Автор: <strong>{{ new.author.username }}</strong> |
+                Опубликовано: {{ new.created_at|date:"d.m.Y H:i" }} |
+                Обновлено: {{ new.updated_at|date:"d.m.Y H:i" }}
+            </p>
+            <p class="card-text mt-2">{{ new.content }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-center">Новостей пока нет.</p>
+    {% endfor %}
+</div>
+{% endblock %}
